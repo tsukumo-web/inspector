@@ -1,0 +1,19 @@
+server:
+    port: 3001
+    root: ./build
+
+input:
+    - src
+
+output:
+    js: ./build/inspector.js
+    css: ./build/inspector.css
+
+minify:
+    js: true
+    css: true
+
+boot: ./src/app/app
+
+alias:
+    app: ./src/app
