@@ -1,0 +1,114 @@
+@import '../_color'
+
+grip= 10px
+head= 32px
+
+.__i__
+    display block
+    position fixed
+    color _black
+    background white
+    z-index: 1000000
+    font-family 'Courier New', monospace
+
+    & > .__i__grip
+        font-size grip
+        position absolute
+        display block
+        outline 1px solid _white
+        color _grey
+        background white
+
+    &.__i__full
+        width 100% !important
+        height 100% !important
+
+        & > .__i__grip
+            display none
+
+    &.__i__top
+    &.__i__bottom
+        width 100% !important
+
+        & > .__i__grip
+            width 100%
+            height grip
+            text-align center
+            cursor row-resize
+
+    &.__i__top
+        top 0
+
+        & > .__i__grip
+            bottom -(grip)
+
+    &.__i__bottom
+        bottom 0
+
+        & > .__i__grip
+            top -(grip)
+
+    &.__i__left
+    &.__i__right
+        height 100% !important
+
+        & > .__i__grip
+            width grip
+            height 100%
+            cursor col-resize
+
+            & > i
+                top 50%
+                position relative
+                transform rotate(90deg)
+
+    &.__i__left
+        left 0
+
+        & > .__i__grip
+            right -(grip)
+
+    &.__i__right
+        right 0
+
+        & > .__i__grip
+            left -(grip)
+
+    & > ul.__i__nav
+        height head
+        font-size (head / 3 * 2)
+        border-bottom 1px solid _white
+
+        & > li
+            display inline-block
+            padding ((head - head / 3 * 2) / 3 * 2) 10px
+            cursor pointer
+            transition 400ms
+
+            &:hover
+                color _blue
+                transform scale(1.05)
+
+            &:active
+                transform scale(1)
+                color darken(_blue, 30%)
+
+            &.__i__settings
+                float right
+
+                &:hover
+                    transform scale(1.05) rotate(90deg)
+
+                &:active
+                    transform scale(1)
+
+            & > span
+                padding 0 6px
+
+    & > .__i__content
+        width 100%
+        height calc(100% \- head)
+        position relative
+
+        & > .__i__page
+            box-sizing border-box
