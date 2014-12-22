@@ -77,13 +77,15 @@ head= 32px
     & > ul.__i__nav
         height head
         font-size (head / 3 * 2)
-        border-bottom 1px solid _white
+        outline 1px solid _white
+        overflow hidden
 
         & > li
             display inline-block
-            padding ((head - head / 3 * 2) / 3 * 2) 10px
+            padding 5px 10px
             cursor pointer
             transition 400ms
+            text-transform capitalize
 
             &:hover
                 color _blue

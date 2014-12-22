@@ -3,11 +3,15 @@
     .__i__grip
         i.fa.fa-ellipsis-h
     ul.__i__nav
-        li.__i__console
-            i.fa.fa-terminal
-            span Console
+        // ko foreach: [console, network]
+        li(data-bind="css:'__i__'+name")
+            i.fa(data-bind="css:icon")
+            span(data-bind="text:name")
+        // /ko
         li.__i__settings(data-bind="click:function(){$data.settings.view(!$data.settings.view())}")
             i.fa.fa-cog
-    .__i__content
+    .__i__content.__i__panorama
         include ../settings/_view
+        include ../consol/_view
+        include ../network/_view
 

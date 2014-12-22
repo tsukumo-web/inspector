@@ -5,13 +5,18 @@
         padding 10px
         height 100%
         width 100%
-        absolute top 100% left
+        absolute top left
+        visibility hidden
+        opacity 0
         outline 1px solid _white
         transition 400ms
         overflow-y auto
+        z-index 100
+        background _white
 
         &.show
-            top 0
+            opacity 1
+            visibility visible
 
         & > .__i__align
 

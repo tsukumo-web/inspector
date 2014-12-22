@@ -1,0 +1,106 @@
+@import '../_color'
+
+_text=_grey
+_info=_blue
+_trace=darken(_white,10%)
+_debug=_green
+_warn=_orange
+_error=_red
+
+.__i__page.__i__console
+    overflow hidden !important
+
+    & > .__i__log
+    & > .__i__obj
+        position relative
+        height 100%
+        box-sizing border-box
+        float left
+        outline 1px solid _white
+
+    & > .__i__log
+        width 70%
+
+        padding-bottom 32px
+
+        & > .__i__list
+            height: 100%;
+            overflow-y: auto;
+
+            & > li
+                padding 8px 0
+                border-left 10px solid _text
+                color _text
+
+                &.__i__warn
+                    border-left 10px solid _warn
+                    color _warn
+                    & > span > a
+                        background _warn
+                &.__i__error
+                    border-left 10px solid _error
+                    color _error
+                    & > span > a
+                        background _error
+                &.__i__trace
+                    border-left 10px solid _trace
+                    color _trace
+                    & > span > a
+                        background _trace
+                &.__i__debug
+                    border-left 10px solid _debug
+                    color _debug
+                    & > span > a
+                        background _debug
+                &.__i__info
+                    border-left 10px solid _info
+                    color _info
+                    & > span > a
+                        background _info
+
+                & > i
+                    box-sizing border-box
+                    width 21px
+                    height 100%
+                    text-align center
+
+                & > span
+                    word-wrap break-word
+                    padding 0 2px
+
+                    & > a
+                        color _white
+                        background _grey
+                        padding 3px 10px
+                        border-radius 4px
+                        cursor pointer
+
+
+                & > .__i__link
+                    float right
+                    color _black
+                    padding-right 10px
+
+                    & > span
+                        padding 0 2px
+
+        & > .__i__input
+            width 100%
+            height 32px
+            font-size 21px
+            absolute bottom left
+            border-radius 0
+            outline 1px solid _white
+            box-sizing border-box
+            border 0
+            padding-left 42px
+            font-family 'Courier New', monospace
+
+        & > .__i__input_arrow
+            absolute bottom left
+            color _blue
+            font-size 32px
+            margin-left 10px
+
+    & > .__i__obj
+        width 30%

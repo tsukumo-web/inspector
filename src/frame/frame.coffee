@@ -14,6 +14,8 @@ class Frame
         @h = window.innerHeight / 3
 
         @settings = require '../settings/settings'
+        @console = require '../consol/consol'
+        @network = require '../network/network'
 
         @cls = [ ]
         @pan = [ ]

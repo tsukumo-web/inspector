@@ -1,0 +1,26 @@
+
+// ko with:console
+.__i__page.__i__console
+    .__i__log
+        ul.__i__list
+            // ko foreach:logs
+            li(data-bind="css:'__i__'+type")
+                // ko if: !$data.console
+                a.__i__link
+                    | &lt;
+                    span(data-bind="text:func")
+                    | &gt;
+                    span(data-bind="text:file")
+                    | :
+                    span(data-bind="text:line")
+                // /ko
+                i.fa(data-bind="css:icon")
+                // ko foreach:info
+                span(data-bind="html:$data,click:$parents[1].aclick")
+                // /ko
+            // /ko
+        input.__i__input(data-bind="value:$data.in" autocorrect="off" autocapitalize="off")
+        i.__i__input_arrow.fa.fa-angle-double-right
+
+    .__i__obj
+// /ko
