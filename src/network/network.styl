@@ -1,0 +1,55 @@
+@import '../_color'
+
+
+.__i__page.__i__network
+
+    & > .__i__stats
+        display table
+        width 100%
+
+        & > .__i__stat
+            display table-row
+
+            &.__i__header
+                text-align center
+                background _white
+
+                & > *
+                    color _black
+                    background _white
+                    border none
+                    white-space nowrap
+                    padding 12px
+
+            & > *
+                display table-cell
+                padding 6px 12px
+                outline 1px solid _white
+
+                &.__i__time
+                    padding 0
+                    position relative
+                    min-width 20%
+
+                    & > .__i__duration
+                        color _white
+                        absolute top left
+                        padding 6px 12px
+                        width 100%
+                        text-align center
+                        box-sizing border-box
+
+                    & > .__i__section
+                        display block
+                        absolute top left
+                        color transparent
+                        height 100%
+
+                        &.__i__1
+                            background _purple
+                        &.__i__2
+                            background _orange
+                        &.__i__3
+                            background _green
+                        &.__i__4
+                            background _blue

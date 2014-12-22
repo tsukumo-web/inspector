@@ -4,13 +4,13 @@
         i.fa.fa-ellipsis-h
     ul.__i__nav
         // ko foreach: [console, network]
-        li(data-bind="css:'__i__'+name")
+        li(data-bind="css:'__i__'+name,attr:{'data-scroll':'#__i__'+name}" data-scroll-what="__i__")
             i.fa(data-bind="css:icon")
             span(data-bind="text:name")
         // /ko
         li.__i__settings(data-bind="click:function(){$data.settings.view(!$data.settings.view())}")
             i.fa.fa-cog
-    .__i__content.__i__panorama
+    .__i__content.__i__panorama(data-scroll-page="__i__" data-scroll-direction="horizontal" data-scroll-url="false")
         include ../settings/_view
         include ../consol/_view
         include ../network/_view

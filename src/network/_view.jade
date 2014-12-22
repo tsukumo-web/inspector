@@ -1,5 +1,35 @@
 
 // ko with:network
-.__i__page.__i__network
-    .__i__
+.__i__page.__i__network#__i__network
+    ul.__i__stats
+        li.__i__stat.__i__header
+            .__i__status
+                span Status
+            .__i__method
+                span Method
+            .__i__domain
+                span Domain
+            .__i__type
+                span Type
+            .__i__size
+                span Size
+            .__i__time
+                span Timings
+        // ko foreach:xhrs
+        li.__i__stat(data-bind="css:{aborted:aborted}")
+            .__i__status(data-bind="text:status")
+            .__i__method(data-bind="text:method")
+            .__i__domain(data-bind="text:domain")
+            .__i__type(data-bind="text:type")
+            .__i__size(data-bind="text:(size/1000).toFixed(2)+' KB'")
+            .__i__time
+                // ko foreach: [4,3,2,1]
+                // ko if: $parent.time[$data]
+                // ko with: ($parent.time[$data])-($parent.time[0])
+                .__i__section(data-bind="css:'__i__'+$parent,text:$data+'ms',style:{width:$data/$parents[1].duration*100+'%'}")
+                // /ko
+                // /ko
+                // /ko
+                .__i__duration(data-bind="text:duration/1000+' ms'")
+        // /ko
 // /ko

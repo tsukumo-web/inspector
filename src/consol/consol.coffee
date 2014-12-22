@@ -3,6 +3,15 @@ coffee = require './coffee'
 
 trace = require './trace'
 
+properties = ( o ) ->
+    props = [ ]
+    curr = o
+    while Object.getPrototypeOf curr
+        for prop in Object.getOwnPropertyNames curr
+            props.push prop if -1 is props.indexOf prop
+        curr = Object.getPrototypeOf curr
+    return props
+
 module.exports = new class Console
 
     @icons =
@@ -14,7 +23,6 @@ module.exports = new class Console
         error: 'fa-times'
         debug: 'fa-bug'
         trace: 'fa-ellipsis-v'
-
 
     constructor: ( ) ->
         @name = 'console'
@@ -31,31 +39,68 @@ module.exports = new class Console
 
         @coffee = false
 
-        @registry = []
+        console.log 4
 
-        @aclick = ( target ) ->
-            alert target?.constructor?.name
-            if attr = target.getAttribute? 'data-registry'
-                alert attr
+        @registry = [ ]
+        @tmp_registry = [ ]
+        @obj = ko.observable null
 
+        @aclick = ( target ) =>
+            target = target.match /<a.+data-registry=.(\d+)/
+            if target = target?[1]
+                @view @registry[target]
+        @oclick = ( target ) =>
+            target = target.v.match /<a.+data-registry=.(\d+)/
+            if target = target?[1]
+                @view @tmp_registry[target]
 
-    obj: ( o ) ->
-        alert 'hi'
-
+    process: ( arr, v ) ->
+        if v is undefined
+            return '[undefined]'
+        if v is null
+            return '[null]'
+        if typeof v is 'object'
+            p = arr.push v
+            return "<a data-registry='#{p-1}'>#{v.constructor.name}</a>"
+        if typeof v is 'string'
+            return v.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+        return v
 
     log: ( args ) ->
-        for msg, i in args.info
-            if msg is undefined
-                args.info[i] = '[undefined]'
-            if msg is null
-                args.info[i] = '[null]'
-            if typeof msg is 'object'
-                v = @registry.push msg
-                args.info[i] = "<a data-registry='#{v-1}'>#{msg.constructor.name}</a>"
+        for v, i in args.info
+            args.info[i] = @process @registry, v
 
         args.icon = Console.icons[args.type]
         @logs.push args
         undefined # change return value to undefined
+
+    view: ( o ) ->
+        @tmp_registry = [ ] # reset temp obj storage
+        if o instanceof Array
+            i = 0
+            @obj [
+                k: 'length'
+                v: o.length
+                t: 'number'
+                l: 'n'
+            ].concat o.map ( k ) =>
+                type = typeof k
+
+                k: i++
+                v: @process @tmp_registry, k
+                t: type
+                l: type.substring 0, 1
+        else
+            @obj properties(o).map ( k ) =>
+                type = typeof o[k]
+
+                k: k
+                v: @process @tmp_registry, o[k]
+                t: type
+                l: type.substring 0, 1
 
     exec: ( code ) ->
         if code is 'lang:coffee'

@@ -65,7 +65,7 @@ _error=_red
                     text-align center
 
                 & > span
-                    word-wrap break-word
+                    word-break break-all
                     padding 0 2px
 
                     & > a
@@ -104,3 +104,38 @@ _error=_red
 
     & > .__i__obj
         width 30%
+        padding 6px
+        height 100%
+        overflow-y auto
+
+        & > .__i__null-obj
+            color _grey
+            text-align center
+            width 100%
+            display block
+            height 100%
+
+        & > .__i__o
+            font-size 18px
+            padding 4px
+
+            & > .__i__o-t
+                float right
+                text-transform capitalize
+                font-weight bold
+                opacity 0.7
+
+            & > .__i__o-k
+                float left
+                color _blue
+                padding-right 4px
+
+            & > .__i__o-v
+                word-break break-all
+
+                & > a
+                    color _white
+                    background _grey
+                    padding 3px 10px
+                    border-radius 4px
+                    cursor pointer

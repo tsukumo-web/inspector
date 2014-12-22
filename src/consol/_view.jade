@@ -1,6 +1,6 @@
 
 // ko with:console
-.__i__page.__i__console
+.__i__page.__i__console#__i__console
     .__i__log
         ul.__i__list
             // ko foreach:logs
@@ -23,4 +23,16 @@
         i.__i__input_arrow.fa.fa-angle-double-right
 
     .__i__obj
+        // ko if: obj() == null
+        span.__i__null-obj No Object
+        // /ko
+        // ko if: obj() != null
+        // ko foreach: obj
+        .__i__o
+            .__i__o-t(data-bind="text:l,css:t")
+            .__i__o-k(data-bind="text:k+':'")
+            .__i__o-v(data-bind="html:v,click:$parent.oclick")
+
+        // /ko
+        // /ko
 // /ko

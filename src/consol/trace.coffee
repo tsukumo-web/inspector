@@ -1,19 +1,26 @@
 
 bowser = require('../../bower_components/bowser/bowser').browser
-
+window.bowser = bowser
 cb = ( ) ->
 
 stack_info = switch
-    when bowser.chrome then () ->
+    when bowser.chrome or bowser.ios then () ->
         trace = new Error().stack.split('\n')[3]
         line = trace.split(':')
         line = line[line.length - 2]
-        left_paren = trace.indexOf ' ('
-        if left_paren > -1
-            func = trace.substring trace.indexOf('at ') + 3, left_paren
-            func = func.substring func.lastIndexOf(' ') + 1
+        if bowser.ipad
+            left_at = trace.indexOf '@'
+            if left_at > -1
+                func = trace.substring 0, left_at
+            else
+                func = ''
         else
-            func = 'global'
+            left_paren = trace.indexOf ' ('
+            if left_paren > -1
+                func = trace.substring trace.indexOf('at ') + 3, left_paren
+                func = func.substring func.lastIndexOf(' ') + 1
+            else
+                func = ''
         slash = trace.indexOf '/'
         if slash > -1
             file = trace.substring trace.lastIndexOf('/') + 1
