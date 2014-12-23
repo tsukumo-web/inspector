@@ -39,7 +39,7 @@ module.exports = new class Console
 
         @coffee = false
 
-        console.log 4
+        console.info 'trace logging enabled'
 
         @registry = [ ]
         @tmp_registry = [ ]

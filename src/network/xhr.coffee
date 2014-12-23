@@ -27,15 +27,20 @@ window.XMLHttpRequest = class XHRWrapper
             if @xhr.readyState is 4
                 @size = encodeURI(@xhr.responseText).split(/%..|./).length - 1;
 
+                @type = @xhr.getResponseHeader('content-type')
+                semi = @type.indexOf ';'
+                @type = @type.substring @type.indexOf('/') + 1,
+                    if semi is -1 then undefined else semi
+
                 xhrs.push
-                    status: @xhr.status
+                    status: @xhr.status + ' ' + @xhr.statusText
                     method: @method
                     domain: @domain
                     file: @file
                     size: @size
                     duration: @time[@time.length - 1] - @time[0]
                     time: @time
-                    type: @xhr.responseType
+                    type: @type || 'text'
                     aborted: @aborted
 
         Object.defineProperty @, 'onreadystatechange',

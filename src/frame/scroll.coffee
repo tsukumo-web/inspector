@@ -61,7 +61,7 @@
         # @property events
         # @type Object
         # @private
-        events      : new Hammer.Manager document.body, recognizers: [[Hammer.Tap]]
+        events      : new Hammer.Manager document.body.parentNode, recognizers: [[Hammer.Tap]]
 
         ##
         # pages to scroll when animating

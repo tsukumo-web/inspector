@@ -5,9 +5,9 @@ window.onload = ( ) ->
 
     i = document.createElement 'inspector'
 
-    document.body.appendChild i
+    document.body.parentNode.appendChild i
     require('../frame/frame') i
 
-    require('knockout').applyBindings { }
+    require('knockout').applyBindings { }, i
 
 
